@@ -18,41 +18,41 @@ double distance(Point& a, Point& b) {
 
 
 int main() {
-  int N = 100;
-  vector<Point> p;
+   int N = 100;
+   vector<Point> p;
 
-  string filename = "output.txt";
-  filename.insert(6, to_string(N));
+   string filename = "output.txt";
+   filename.insert(6, to_string(N));
 
-  ifstream file;
-  file.open(filename);
+   ifstream file;
+   file.open(filename);
 
-  for(int i=0; i<N; i++) {
-     double a, b;
-     file>>a>>b;
-     Point temp;
-     temp.x = a;
-     temp.y = b;
-     p.push_back(temp);
-  }
+   for(int i=0; i<N; i++) {
+      double a, b;
+      file>>a>>b;
+      Point temp;
+      temp.x = a;
+      temp.y = b;
+      p.push_back(temp);
+   }
   
   
-  double minDistance = DBL_MAX;
-  int idxA;
-  int idxB;
-  for(int i=0; i<N; i++) {
-     for(int j=0; j<N; j++) {
-       double currDistance = distance(p[i],p[j]);
-       if(currDistance<minDistance && currDistance != 0){
-	  minDistance=currDistance;
-	  idxA = i;
-	  idxB = j;
-       }
-     }
+   double minDistance = DBL_MAX;
+   int idxA;
+   int idxB;
+   for(int i=0; i<N; i++) {
+      for(int j=0; j<N; j++) {
+	 double currDistance = distance(p[i],p[j]);
+	 if(currDistance<minDistance && currDistance != 0){
+	    minDistance=currDistance;
+	    idxA = i;
+	    idxB = j;
+	 }
+      }
    }
 
   
-  cout<<"Minimum Distance is "<<minDistance<<" between points ";
-  cout<<p[idxA].x<<","<<p[idxA].y<<" and "<<p[idxB].x<<","<<p[idxB].y<<endl;
+   cout<<"Minimum Distance is "<<minDistance<<" between points ";
+   cout<<p[idxA].x<<","<<p[idxA].y<<" and "<<p[idxB].x<<","<<p[idxB].y<<endl;
   
 }
