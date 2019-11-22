@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  int N = 100;
+  int N = 10000;
   string filename = "output.txt";
   filename.insert(6, to_string(N));
 
