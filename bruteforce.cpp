@@ -19,7 +19,7 @@ double distance(Point& a, Point& b) {
 
 
 int main() {
-    int N = 10000;
+    int N = 5000;
     vector<Point> p;
     clock_t start;
 
@@ -56,7 +56,7 @@ int main() {
 
     double duration = (clock() - start) / (double) CLOCKS_PER_SEC;
 
-    cout<<"Minimum Distance is "<<minDistance<<" between points ";
-    cout<<p[idxA].x<<","<<p[idxA].y<<" and "<<p[idxB].x<<","<<p[idxB].y<<endl;
-    cout<<"Time taken: "<<duration<<"s"<<endl;
+    cout << "Minimum Distance is " << minDistance << " between points ";
+    cout << p[idxA].x << "," << p[idxA].y << " and "<< p[idxB].x << "," << p[idxB].y << endl;
+    cout << "Time taken: " << duration << "s" << endl;
 }
