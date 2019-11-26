@@ -3,7 +3,7 @@
 #include <vector>
 #include <cmath>
 #include <float.h>
-#include <ctime>
+#include <chrono>
 using namespace std;
 
 
@@ -21,7 +21,6 @@ double distance(Point& a, Point& b) {
 int main() {
     int N = 5000;
     vector<Point> p;
-    clock_t start;
 
     string filename = "output.txt";
     filename.insert(6, to_string(N));
@@ -38,7 +37,7 @@ int main() {
         p.push_back(temp);
     }
 
-    start = clock();
+    auto begin = chrono::high_resolution_clock::now();
 
     double minDistance = DBL_MAX;
     int idxA;
@@ -54,9 +53,11 @@ int main() {
         }
     }
 
-    double duration = (clock() - start) / (double) CLOCKS_PER_SEC;
+    auto end = chrono::high_resolution_clock::now();
+    auto dur = end - begin;
+    auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(dur).count();
 
     cout << "Minimum Distance is " << minDistance << " between points ";
     cout << p[idxA].x << "," << p[idxA].y << " and "<< p[idxB].x << "," << p[idxB].y << endl;
-    cout << "Time taken: " << duration << "s" << endl;
+    cout << "Time taken: " << ms << "ms" << endl;
 }

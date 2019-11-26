@@ -14,4 +14,4 @@ create: create.cpp
 
 .PHONY: clean
 clean:
-	rm -rf *~ *.o *.txt
+	rm -rf *~ *.o *.txt *.

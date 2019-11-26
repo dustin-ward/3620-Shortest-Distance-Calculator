@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <cmath>
 #include <float.h>
-#include <ctime>
+#include <chrono>
 using namespace std;
 
 struct Point {
@@ -69,7 +69,6 @@ double closestPair(Point p[], int n) {
 int main() {
     int N = 5000;
     Point* p = new Point[N];
-    clock_t start;
 
     string filename = "output.txt";
     filename.insert(6, to_string(N));
@@ -86,14 +85,18 @@ int main() {
         p[i] = temp;
     }
 
-    start = clock();
+    auto begin = chrono::high_resolution_clock::now();
 
     sort(p, p+N, comparePointX);
 
     double ans = closestPair(p, N);
-    double duration = (clock() - start) / (double) CLOCKS_PER_SEC;
+
+    auto end = chrono::high_resolution_clock::now();
+    auto dur = end - begin;
+    auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(dur).count();
+
     cout << "Closest distance: " << ans << endl;
-    cout << "Time taken: " << duration << "s"<< endl;
+    cout << "Time taken: " << ms << "ms"<< endl;
 
     delete[] p;
 }
