@@ -4,91 +4,71 @@
 #include "./include/divideconquer.h"
 using namespace std;
 
-void run(int n) {
+/**
+* Helper function that runs both algorithms with the same point size.
+* Prints out the average time taken by both algorithms.
+*/
+void run(int n, int p) {
   long long bSum=0;
   int dSum=0;
-  cout << "=================== " << n << "===================" << endl;
+  cout << "=================== " << n << " ===================" << endl;
+  /**
+  * Run the point generator with size 'n'
+  */
   Create c(n);
-  cout << "Bruteforce: \n" << endl;
-  for(int i=0; i<5; i++) {
+
+  /**
+  * Run the bruteforce algorithm 'p' times on size 'n'.
+  * Then print the average time taken.
+  */
+  cout << "Bruteforce: ";
+  for(int i=0; i<p; i++) {
     Bruteforce b(n);
     bSum += b.ans;
   }
-  cout << bSum/5 << endl;
-  cout << "Divide and Conquer: \n" <<endl;
-  //DivideConquer d(n);
-  for(int i=0; i<5; i++) {
-    DivideConquer* d = new DivideConquer(n);
-    cout << d->ans << endl;
-    dSum += d->ans;
-    delete d;
+  long long bAvg = bSum/p;
+  if (bAvg > 9999) {
+    bAvg /= 100;
+    cout << bAvg << "ms" << endl;
   }
-  cout << dSum/5 << endl;
+  else {
+    cout << bAvg << "us" << endl;
+  }
+
+  /**
+  * Run the divide & conquer algorithm 'p' times on size 'n'.
+  * Then print the average time taken.
+  */
+  cout << "\nDivide and Conquer: ";
+  for(int i=0; i<p; i++) {
+    DivideConquer d(n);
+    dSum += d.ans1;
+  }
+  long long dAvg = dSum/p;
+  if (dAvg > 9999) {
+    dAvg /= 100;
+    cout << dAvg << "ms" << endl;
+  }
+  else {
+    cout << dAvg << "us" << endl;
+  }
 }
 
+/**
+* Main responsible for user input
+*/
 int main() {
-  // int x = 100;
-  // run(x);
-  //
-  // x = 200;
-  // run(x);
-  //
-  // x = 300;
-  // run(x);
-  //
-  // x = 400;
-  // run(x);
-  //
-  // x = 500;
-  // run(x);
-  //
-  // x = 600;
-  // run(x);
-  //
-  // x = 700;
-  // run(x);
-  //
-  // x = 800;
-  // run(x);
-  //
-  // x = 900;
-  // run(x);
-  //
-  // x = 1000;
-  // run(x);
-  //
-  // x = 1500;
-  // run(x);
-  //
-  // x = 2000;
-  // run(x);
-  //
-  // x = 2500;
-  // run(x);
-  //
-  // x = 3000;
-  // run(x);
-  //
-  // x = 4000;
-  // run(x);
-  //
-  // x = 5000;
-  // run(x);
-  //
-  // x = 6000;
-  // run(x);
-  //
-  // x = 7000;
-  // run(x);
-  //
-  // x = 8000;
-  // run(x);
-  //
-  // x = 9000;
-  // run(x);
+  int num;
+  int pres;
 
-  int x = 100000;
-  run(x);
+  cout << "Enter the number of points to run both algorithms on, followed by the number of times to run the test: (Type -1 to stop)";
+  cin>>num;
+  while(num != -1) {
+    cin>>pres;
+    run(num, pres);
+    cout << "\nEnter the number of points to run both algorithms on, followed by the number of times to run the test: (Type -1 to stop)";
+    cin>>num;
+  }
 
   return 0;
 }

@@ -6,10 +6,9 @@
 #include <float.h>
 #include <chrono>
 
-double Bruteforce::distance(Point& a, Point& b) {
-   return sqrt(pow(a.x-b.x, 2) + pow(a.y-b.y, 2));
-}
-
+/**
+* Runs the bruteforce algorithm on size 'n'
+*/
 Bruteforce::Bruteforce(int input) {
     int N = input;
     std::vector<Point> p;
@@ -57,4 +56,14 @@ Bruteforce::Bruteforce(int input) {
 
 }
 
+/**
+* Destructor
+*/
 Bruteforce::~Bruteforce(){}
+
+/**
+* Returns the distance between two given points
+*/
+double Bruteforce::distance(Point& a, Point& b) {
+   return sqrt(pow(a.x-b.x, 2) + pow(a.y-b.y, 2));
+}

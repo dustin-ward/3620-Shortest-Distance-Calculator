@@ -5,6 +5,9 @@
 #include <random>
 #include <fstream>
 
+/**
+* Runs the point creator algorithm with a size 'n'
+*/
 Create::Create(int input) {
   int N = input;
   std::string filename = "output.txt";
@@ -26,4 +29,7 @@ Create::Create(int input) {
   file.close();
 }
 
+/**
+* Destructor
+*/
 Create::~Create() {}

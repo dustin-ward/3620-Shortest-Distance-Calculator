@@ -6,54 +6,9 @@
 #include <float.h>
 #include <chrono>
 
-double DivideConquer::distance(Point& a, Point& b) {
-    return sqrt(pow(a.x-b.x, 2) + pow(a.y-b.y, 2));
-}
-
-double DivideConquer::bruteforce(Point p[], int n) {
-    double minDistance = DBL_MAX;
-    for (int i=0; i<n; i++) {
-        for (int j=i+1; j<n; j++) {
-            double temp = distance(p[i], p[j]);
-            if (temp < minDistance) {
-                minDistance = temp;
-            }
-        }
-    }
-
-    return minDistance;
-}
-
-double DivideConquer::closestPair(Point p[], int n) {
-    if (n < 4) {
-        return bruteforce(p, n);
-    }
-
-    double minDistance = std::min(closestPair(p, n/2), closestPair(p+(n/2), n-(n/2)));
-
-    int m = 0;
-    Point closePoints[n];
-    for (int i=0; i<n; i++) {
-        if (abs(p[i].x - p[n/2].x) < minDistance) {
-            closePoints[m] = p[i];
-            m++;
-        }
-    }
-
-    std::sort(closePoints, closePoints+m, [](Point const & a, Point const & b) -> bool
-          { return a.y < b.y; });
-
-    for (int i=0; i<m; i++) {
-        for (int j=i+1; j<m && (closePoints[j].y - closePoints[i].y) < minDistance; j++) {
-            double temp = distance(closePoints[i], closePoints[j]);
-            if (temp < minDistance)
-                minDistance = temp;
-        }
-    }
-
-    return minDistance;
-}
-
+/**
+* Runs the divideconquer algorithm on size 'n'
+*/
 DivideConquer::DivideConquer(int input) {
     int N = input;
     Point* p = new Point[N];
@@ -84,12 +39,72 @@ DivideConquer::DivideConquer(int input) {
     auto dur = end - begin;
     auto ms = std::chrono::duration_cast<std::chrono::microseconds>(dur).count();
 
-    std::cout << "Closest distance: " << ans << std::endl;
-    std::cout << "Time taken: " << ms << "us"<< std::endl;
+    // std::cout << "Closest distance: " << ans << std::endl;
+    // std::cout << "Time taken: " << ms << "us"<< std::endl;
 
-    ans = ms;
+    ans1 = ms;
 
     delete[] p;
 }
 
+/**
+* Destructor
+*/
 DivideConquer::~DivideConquer(){}
+
+/**
+* Returns the distance between two given points
+*/
+double DivideConquer::distance(Point& a, Point& b) {
+    return sqrt(pow(a.x-b.x, 2) + pow(a.y-b.y, 2));
+}
+
+/**
+* Implementation of the bruteforce version of this algorithm.
+* Used when arrays reach a small enough size (2 or 3)
+*/
+double DivideConquer::bruteforce(Point p[], int n) {
+    double minDistance = DBL_MAX;
+    for (int i=0; i<n; i++) {
+        for (int j=i+1; j<n; j++) {
+            double temp = distance(p[i], p[j]);
+            if (temp < minDistance) {
+                minDistance = temp;
+            }
+        }
+    }
+    return minDistance;
+}
+
+/**
+* Recursive function to be called in main algorithm
+*/
+double DivideConquer::closestPair(Point p[], int n) {
+    if (n < 4) {
+        return bruteforce(p, n);
+    }
+
+    double minDistance = std::min(closestPair(p, n/2), closestPair(p+(n/2), n-(n/2)));
+
+    int m = 0;
+    Point closePoints[n];
+    for (int i=0; i<n; i++) {
+        if (abs(p[i].x - p[n/2].x) < minDistance) {
+            closePoints[m] = p[i];
+            m++;
+        }
+    }
+
+    std::sort(closePoints, closePoints+m, [](Point const & a, Point const & b) -> bool
+          { return a.y < b.y; });
+
+    for (int i=0; i<m; i++) {
+        for (int j=i+1; j<m && (closePoints[j].y - closePoints[i].y) < minDistance; j++) {
+            double temp = distance(closePoints[i], closePoints[j]);
+            if (temp < minDistance)
+                minDistance = temp;
+        }
+    }
+
+    return minDistance;
+}

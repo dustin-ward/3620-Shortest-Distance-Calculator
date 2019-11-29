@@ -1,6 +1,9 @@
 #ifndef CREATE
 #define CREATE
 
+/**
+* Definition of a 'Point'
+*/
 struct Point {
    double x;
    double y;
@@ -8,10 +11,15 @@ struct Point {
 
 class Create {
   public:
-   Create(int input);
+    /**
+    * Runs the point creator algorithm with a size 'n'
+    */
+    Create(int input);
 
-   ~Create();
+    /**
+    * Destructor
+    */
+    ~Create();
 };
-
 
 #endif

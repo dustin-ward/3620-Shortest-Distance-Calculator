@@ -5,21 +5,37 @@
 
 class DivideConquer {
  public:
+   /**
+   * Runs the divideconquer algorithm on size 'n'
+   */
    DivideConquer(int input);
 
+   /**
+   * Destructor
+   */
    ~DivideConquer();
 
-   int ans;
+   /**
+   * Total time taken.
+   * To be used in main function
+   */
+   long long ans1;
 
  private:
+   /**
+   * Returns the distance between two given points
+   */
    double distance(Point& a, Point& b);
 
-   bool comparePointX(Point a, Point b);
-
-   bool comparePointY(Point a, Point b);
-
+   /**
+   * Implementation of the bruteforce version of this algorithm.
+   * Used when arrays reach a small enough size (2 or 3)
+   */
    double bruteforce(Point p[], int n);
 
+   /**
+   * Recursive function to be called in main algorithm
+   */
    double closestPair(Point p[], int n);
 
 };
