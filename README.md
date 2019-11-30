@@ -4,7 +4,7 @@
 
 ## Make targets ##
 
-Clean : Remove all generated files from the directory
+clean : Remove all generated files from the directory
 
 bruteforce : Interface for running the Brute-Force implementation
 
