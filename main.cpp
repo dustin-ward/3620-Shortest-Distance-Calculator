@@ -9,8 +9,8 @@ using namespace std;
 * Prints out the average time taken by both algorithms.
 */
 void run(int n, int p) {
-  long long bSum=0;
-  int dSum=0;
+  long double bSum=0;
+  long double dSum=0;
   cout << "=================== " << n << " ===================" << endl;
   /**
   * Run the point generator with size 'n'
@@ -23,12 +23,12 @@ void run(int n, int p) {
   */
   cout << "Bruteforce: ";
   for(int i=0; i<p; i++) {
-    Bruteforce b(n);
+    Bruteforce b(n, true);
     bSum += b.ans;
   }
-  long long bAvg = bSum/p;
+  long double bAvg = bSum/p;
   if (bAvg > 9999) {
-    bAvg /= 100;
+    bAvg /= 1000;
     cout << bAvg << "ms" << endl;
   }
   else {
@@ -41,12 +41,12 @@ void run(int n, int p) {
   */
   cout << "\nDivide and Conquer: ";
   for(int i=0; i<p; i++) {
-    DivideConquer d(n);
+    DivideConquer d(n, true);
     dSum += d.ans1;
   }
-  long long dAvg = dSum/p;
+  long double dAvg = dSum/p;
   if (dAvg > 9999) {
-    dAvg /= 100;
+    dAvg /= 1000;
     cout << dAvg << "ms" << endl;
   }
   else {
@@ -63,7 +63,7 @@ int main() {
 
   cout << "Enter the number of points to run both algorithms on, followed by the number of times to run the test: (Type -1 to stop)";
   cin>>num;
-  while(num != -1) {
+  while(num > 1) {
     cin>>pres;
     run(num, pres);
     cout << "\nEnter the number of points to run both algorithms on, followed by the number of times to run the test: (Type -1 to stop)";

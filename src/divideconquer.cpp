@@ -9,7 +9,7 @@
 /**
 * Runs the divideconquer algorithm on size 'n'
 */
-DivideConquer::DivideConquer(int input) {
+DivideConquer::DivideConquer(int input, bool testing) {
     int N = input;
     Point* p = new Point[N];
 
@@ -39,8 +39,9 @@ DivideConquer::DivideConquer(int input) {
     auto dur = end - begin;
     auto ms = std::chrono::duration_cast<std::chrono::microseconds>(dur).count();
 
-    // std::cout << "Closest distance: " << ans << std::endl;
-    // std::cout << "Time taken: " << ms << "us"<< std::endl;
+    if(!testing) {
+        std::cout << "Closest distance: " << ans << std::endl;
+    }
 
     ans1 = ms;
 

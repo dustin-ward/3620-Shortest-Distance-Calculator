@@ -9,7 +9,7 @@
 /**
 * Runs the bruteforce algorithm on size 'n'
 */
-Bruteforce::Bruteforce(int input) {
+Bruteforce::Bruteforce(int input, bool testing) {
     int N = input;
     std::vector<Point> p;
 
@@ -48,9 +48,10 @@ Bruteforce::Bruteforce(int input) {
     auto dur = end - begin;
     auto ms = std::chrono::duration_cast<std::chrono::microseconds>(dur).count();
 
-    // std::cout << "Minimum Distance is " << minDistance << " between points ";
-    // std::cout << p[idxA].x << "," << p[idxA].y << " and "<< p[idxB].x << "," << p[idxB].y << std::endl;
-    // std::cout << "Time taken: " << ms << "us" << std::endl;
+    if (!testing) {
+        std::cout << "Minimum Distance is " << minDistance << " between points ";
+        std::cout << p[idxA].x << "," << p[idxA].y << " and "<< p[idxB].x << "," << p[idxB].y << std::endl;
+    }
 
     ans = ms;
 

@@ -8,7 +8,7 @@ class Bruteforce {
    /**
    * Runs the bruteforce algorithm on size 'n'
    */
-   Bruteforce(int input);
+   Bruteforce(int input, bool testing);
 
    /**
    * Destructor
@@ -19,7 +19,7 @@ class Bruteforce {
    * Total time taken.
    * To be used in main function
    */
-   long long ans;
+   long double ans;
 
  private:
    /**

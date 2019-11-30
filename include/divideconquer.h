@@ -8,7 +8,7 @@ class DivideConquer {
    /**
    * Runs the divideconquer algorithm on size 'n'
    */
-   DivideConquer(int input);
+   DivideConquer(int input, bool testing);
 
    /**
    * Destructor
@@ -19,7 +19,7 @@ class DivideConquer {
    * Total time taken.
    * To be used in main function
    */
-   long long ans1;
+   long double ans1;
 
  private:
    /**

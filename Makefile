@@ -11,16 +11,14 @@ tests: main.cpp $(SRC_DIR)
 	$(SRC_DIR)/*.cpp
 
 .PHONY: bruteforce
-bruteforce: bruteforce.cpp
-	g++ -std=c++11 -o bruteforce bruteforce.cpp -Wall
+bruteforce: mainBruteforce.cpp
+	g++ -std=c++11 $(INCLUDE) -o bruteforce mainBruteforce.cpp \
+	$(SRC_DIR)/*.cpp
 
 .PHONY: divideconquer
-divideconquer: divideconquer.cpp
-	g++ -std=c++11 -o divideconquer divideconquer.cpp -Wall
-
-.PHONY: create
-create: create.cpp
-	g++ -std=c++11 -o create create.cpp -Wall
+divideconquer: mainDivConquer.cpp
+	g++ -std=c++11 $(INCLUDE) -o divideconquer mainDivConquer.cpp \
+	$(SRC_DIR)/*.cpp
 
 .PHONY: clean
 clean:
