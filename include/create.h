@@ -9,6 +9,16 @@ struct Point {
    double y;
 };
 
+/**
+* Definition of a Minimum Distance
+* Holds the pair of points with the distance
+*/
+struct minDistance {
+    double val;
+    Point p1;
+    Point p2;
+};
+
 class Create {
   public:
     /**

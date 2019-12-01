@@ -31,12 +31,12 @@ class DivideConquer {
    * Implementation of the bruteforce version of this algorithm.
    * Used when arrays reach a small enough size (2 or 3)
    */
-   double bruteforce(Point p[], int n);
+   minDistance bruteforce(Point p[], int n);
 
    /**
    * Recursive function to be called in main algorithm
    */
-   double closestPair(Point p[], int n);
+   minDistance closestPair(Point p[], int n);
 
 };
 
